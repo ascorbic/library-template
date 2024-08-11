@@ -24,6 +24,12 @@
 		"tsup": "^8.2.0",
 		"typescript": "^5.5.3"
 	},
+	"repository": {
+		"type": "git",
+		"url": "git+github.com:ascorbic/library-template.git",
+		"directory": "packages/example"
+	},
+	"homepage": "https://github.com/ascorbic/library-template",
 	"keywords": [],
 	"author": "Matt Kane",
 	"license": "MIT"

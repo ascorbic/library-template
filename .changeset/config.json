@@ -3,7 +3,7 @@
 	"changelog": [
 		"@changesets/changelog-github",
 		{
-			"repo": "ascorbic/astro-loaders"
+			"repo": "ascorbic/library-template"
 		}
 	],
 	"commit": false,
@@ -12,5 +12,7 @@
 	"access": "public",
 	"baseBranch": "main",
 	"updateInternalDependencies": "patch",
-	"ignore": []
+	"ignore": [
+		"@test/*"
+	]
 }

@@ -4,6 +4,7 @@
 	"description": "",
 	"main": "index.js",
 	"scripts": {
+		"check": "pnpm run --filter @ascorbic/* check",
 		"test": "pnpm run --filter @ascorbic/* test",
 		"build": "pnpm run --filter @ascorbic/* build"
 	},

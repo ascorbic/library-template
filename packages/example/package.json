@@ -18,7 +18,7 @@
 		"test": "vitest"
 	},
 	"devDependencies": {
-		"@arethetypeswrong/cli": "^0.15.4",
+		"@arethetypeswrong/cli": "^0.16.1",
 		"@types/feedparser": "^2.2.8",
 		"publint": "^0.2.10",
 		"tsup": "^8.2.4",

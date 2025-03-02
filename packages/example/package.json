@@ -20,9 +20,9 @@
 	"devDependencies": {
 		"@arethetypeswrong/cli": "^0.17.4",
 		"@types/feedparser": "^2.2.8",
-		"publint": "^0.3.6",
-		"tsup": "^8.3.6",
-		"typescript": "^5.7.3"
+		"publint": "^0.3.7",
+		"tsup": "^8.4.0",
+		"typescript": "^5.8.2"
 	},
 	"repository": {
 		"type": "git",

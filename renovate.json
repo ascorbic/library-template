@@ -1,8 +1,5 @@
 {
 	"$schema": "https://docs.renovatebot.com/renovate-schema.json",
-	"extends": [
-		"github>unjs/renovate-config",
-		":widenPeerDependencies"
-	],
+	"extends": ["github>unjs/renovate-config", ":widenPeerDependencies"],
 	"packageRules": []
 }

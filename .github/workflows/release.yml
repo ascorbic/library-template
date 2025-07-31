@@ -44,6 +44,10 @@ jobs:
         run: pnpm run build
       - run: pnpm run check
 
+      # Update npm to latest version so that OIDC works correctly
+      - name: Update npm
+        run: npm install -g npm@latest
+
       - name: Create Release Pull Request or Publish to npm
         id: changesets
         uses: changesets/action@v1
@@ -54,4 +58,3 @@ jobs:
           title: "ci: release"
         env:
           GITHUB_TOKEN: ${{ steps.get-token.outputs.token }}
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}

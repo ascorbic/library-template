@@ -15,8 +15,8 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 7. **GitHub Secrets**: Set up required secrets in GitHub repository settings:
    - `APP_PRIVATE_KEY` - GitHub App private key for release workflow
    - `APP_ID` - GitHub App ID for release workflow  
-   - `NPM_TOKEN` - NPM token for publishing packages
    - `CLAUDE_CODE_OAUTH_TOKEN` - Claude Code OAuth token for PR assistant
+8. **npm Trusted Publishing**: Configure trusted publishing on npmjs.com for your packages to enable OIDC authentication (no NPM_TOKEN needed)
 
 After setup, remove this section from CLAUDE.md.
 

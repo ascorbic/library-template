@@ -7,7 +7,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 **This is currently a template repository.** If you see this message, you need to set up a new project by updating the following:
 
 1. **Package names**: Update `@ascorbic/example` in all `package.json` files to your new package name
-2. **Repository URLs**: Update git repository URLs in `package.json` files
+2. **Repository URLs**: Update git repository URLs in `package.json` files. Check the current git remote for this.
 3. **README files**: Update README.md files with your project information
 4. **Test files**: Rename `packages/example/test/hello.test.ts` to a more appropriate test name
 5. **Package directory**: Rename `packages/example/` to your actual package name

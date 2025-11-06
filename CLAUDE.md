@@ -12,11 +12,14 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 4. **Test files**: Rename `packages/example/test/hello.test.ts` to a more appropriate test name
 5. **Package directory**: Rename `packages/example/` to your actual package name
 6. **Workspace name**: Update the workspace name in the root `package.json`
-7. **GitHub Secrets**: Set up required secrets in GitHub repository settings:
+7. **Changeset configuration** in `.changeset/config.json`:
+   - Update `repo` field from `ascorbic/library-template` to your actual repository (e.g., `yourname/yourrepo`)
+   - Review the `ignore` array and remove/update package names as needed for your project
+8. **GitHub Secrets**: Set up required secrets in GitHub repository settings:
    - `APP_PRIVATE_KEY` - GitHub App private key for release workflow
-   - `APP_ID` - GitHub App ID for release workflow  
+   - `APP_ID` - GitHub App ID for release workflow
    - `CLAUDE_CODE_OAUTH_TOKEN` - Claude Code OAuth token for PR assistant
-8. **npm Trusted Publishing**: Configure trusted publishing on npmjs.com for your packages to enable OIDC authentication (no NPM_TOKEN needed)
+9. **npm Trusted Publishing**: Configure trusted publishing on npmjs.com for your packages to enable OIDC authentication (no NPM_TOKEN needed)
 
 After setup, remove this section from CLAUDE.md.
 

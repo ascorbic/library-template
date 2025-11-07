@@ -1,10 +1,8 @@
-# CLAUDE.md
-
-This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+This file provides guidance to agentic coding tools when working with code in this repository.
 
 ## ⚠️ Template Setup Required
 
-**This is currently a template repository.** If you see this message, you need to set up a new project by updating the following:
+**This is currently a template repository.** If you see this message, check if this is a new repo based on the template, by seeing if the git remote is ascorbic/library-template. If not, you need to set up a new project by updating the following:
 
 1. **Package names**: Update `@ascorbic/example` in all `package.json` files to your new package name
 2. **Repository URLs**: Update git repository URLs in `package.json` files. Check the current git remote for this.
@@ -15,11 +13,25 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 7. **Changeset configuration** in `.changeset/config.json`:
    - Update `repo` field from `ascorbic/library-template` to your actual repository (e.g., `yourname/yourrepo`)
    - Review the `ignore` array and remove/update package names as needed for your project
-8. **GitHub Secrets**: Set up required secrets in GitHub repository settings:
-   - `APP_PRIVATE_KEY` - GitHub App private key for release workflow
-   - `APP_ID` - GitHub App ID for release workflow
-   - `CLAUDE_CODE_OAUTH_TOKEN` - Claude Code OAuth token for PR assistant
-9. **npm Trusted Publishing**: Configure trusted publishing on npmjs.com for your packages to enable OIDC authentication (no NPM_TOKEN needed)
+8. **GitHub Secrets**: Set up required secrets using 1Password CLI and GitHub CLI:
+
+   ```bash
+   # Authenticate to 1Password (use my.1password.com account)
+   eval $(op signin --account my.1password.com)
+
+   # Set GitHub App secrets from "Mixiebot GitHub" entry
+   op item get "Mixiebot GitHub" --account my.1password.com --fields "app id" | gh secret set APP_ID
+   op item get "Mixiebot GitHub" --account my.1password.com --fields "private key" | gh secret set APP_PRIVATE_KEY
+   ```
+
+   For `CLAUDE_CODE_OAUTH_TOKEN`: Tell the user to open Claude Code and run the `/install-github-app` command, which will guide them through setting up the GitHub app and automatically add the secret to their repository. Note: The user must be a repository admin to install the GitHub app and add secrets.
+
+9. **npm Trusted Publishing**: The user must manually configure trusted publishing on npmjs.com for their packages to enable OIDC authentication (no NPM_TOKEN needed). Tell them to:
+   1. Publish a 0.0.0 version of the package locally (one-time setup)
+   2. Navigate to the package page on npmjs.com
+   3. Click on "Settings"
+   4. Follow the GitHub authentication flow
+   5. Enter the repository name and `release.yml` as the workflow name
 
 After setup, remove this section from CLAUDE.md.
 

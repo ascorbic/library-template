@@ -1,4 +1,4 @@
-name: Claude PR Assistant
+name: Claude Code
 
 on:
   issue_comment:
@@ -11,62 +11,40 @@ on:
     types: [submitted]
 
 jobs:
-  claude-code-action:
+  claude:
     if: |
       (github.event_name == 'issue_comment' && contains(github.event.comment.body, '@claude')) ||
       (github.event_name == 'pull_request_review_comment' && contains(github.event.comment.body, '@claude')) ||
       (github.event_name == 'pull_request_review' && contains(github.event.review.body, '@claude')) ||
-      (github.event_name == 'issues' && contains(github.event.issue.body, '@claude'))
+      (github.event_name == 'issues' && (contains(github.event.issue.body, '@claude') || contains(github.event.issue.title, '@claude')))
     runs-on: ubuntu-latest
     permissions:
       contents: read
       pull-requests: read
       issues: read
       id-token: write
+      actions: read # Required for Claude to read CI results on PRs
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v5
+        uses: actions/checkout@v4
         with:
           fetch-depth: 1
 
-      - name: Install pnpm
-        uses: pnpm/action-setup@v4
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v6
-        with:
-          node-version: "lts/*"
-          cache: "pnpm"
-
-      - name: Install dependencies
-        run: pnpm install
-
-      - name: Run Claude PR Action
-        uses: anthropics/claude-code-action@beta
+      - name: Run Claude Code
+        id: claude
+        uses: anthropics/claude-code-action@v1
         with:
           claude_code_oauth_token: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
-          timeout_minutes: "5"
-          # mcp_config: |
-          #   {
-          #     "mcpServers": {
-          #       "astro-docs": {
-          #         "type": "http",
-          #         "url": "https://mcp.docs.astro.build/mcp"
-          #       }
-          #     }
-          #   }
-          allowed_tools: |
-            Bash(pnpm install)
-            Bash(pnpm run:*)
-            Bash(npm run:*)
-            Bash(npx packages/am-i-vibing)
-          # mcp__astro-docs__search_astro_docs
-          # Optional: Restrict network access to specific domains only
-          # experimental_allowed_domains: |
-          #   .anthropic.com
-          #   .github.com
-          #   api.github.com
-          #   .githubusercontent.com
-          #   bun.sh
-          #   registry.npmjs.org
-          #   .blob.core.windows.net
+
+          # This is an optional setting that allows Claude to read CI results on PRs
+          additional_permissions: |
+            actions: read
+
+          # Optional: Give a custom prompt to Claude. If this is not specified, Claude will perform the instructions specified in the comment that tagged it.
+          # prompt: 'Update the pull request description to include a summary of changes.'
+
+          # Optional: Add claude_args to customize behavior and configuration
+          # See https://github.com/anthropics/claude-code-action/blob/main/docs/usage.md
+          # or https://docs.claude.com/en/docs/claude-code/cli-reference for available options
+          # claude_args: '--allowed-tools Bash(gh pr:*)'
+

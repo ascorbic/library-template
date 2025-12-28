@@ -20,12 +20,10 @@ This file provides guidance to agentic coding tools when working with code in th
 10. **GitHub Secrets**: Set up required secrets using 1Password CLI and GitHub CLI:
 
    ```bash
-   # Authenticate to 1Password (use my.1password.com account)
-   eval $(op signin --account my.1password.com)
-
-   # Set GitHub App secrets from "Mixiebot GitHub" entry
-   op item get "Mixiebot GitHub" --account my.1password.com --fields "app id" | gh secret set APP_ID
-   op item get "Mixiebot GitHub" --account my.1password.com --fields "private key" | gh secret set APP_PRIVATE_KEY
+   # Set GitHub App secrets from "Mixiebot GitHub" 1Password entry
+   # Note: Use --format json | jq -r to extract raw values without quotes
+   op item get "Mixiebot GitHub" --account my.1password.com --fields "app id" --format json | jq -r '.value' | gh secret set APP_ID
+   op item get "Mixiebot GitHub" --account my.1password.com --fields "private key" --format json | jq -r '.value' | gh secret set APP_PRIVATE_KEY
    ```
 
    For `CLAUDE_CODE_OAUTH_TOKEN`: Tell the user to open Claude Code and run the `/install-github-app` command, which will guide them through setting up the GitHub app and automatically add the secret to their repository. Note: The user must be a repository admin to install the GitHub app and add secrets.

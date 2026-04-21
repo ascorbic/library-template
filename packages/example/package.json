@@ -19,9 +19,9 @@
   },
   "devDependencies": {
     "@arethetypeswrong/cli": "^0.18.2",
-    "@types/feedparser": "^2.2.8",
+    "@types/feedparser": "^2.3.0",
     "publint": "^0.3.18",
-    "tsdown": "^0.21.4",
+    "tsdown": "^0.21.9",
     "typescript": "^5.9.3"
   },
   "repository": {

@@ -20,8 +20,8 @@
   "devDependencies": {
     "@arethetypeswrong/cli": "^0.18.2",
     "@types/feedparser": "^2.3.0",
-    "publint": "^0.3.18",
-    "tsdown": "^0.21.10",
+    "publint": "^0.3.21",
+    "tsdown": "^0.22.0",
     "typescript": "^5.9.3"
   },
   "repository": {

@@ -22,7 +22,7 @@
     "@types/feedparser": "^2.3.0",
     "publint": "^0.3.21",
     "tsdown": "^0.22.0",
-    "typescript": "^5.9.3"
+    "typescript": "^6.0.0"
   },
   "repository": {
     "type": "git",
